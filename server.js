@@ -28,5 +28,12 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use("/api/admin", adminRoute) 
 app.use("/api/auth", authroute) 
-
+app.post("/", (req, res) => {
+  // Since JWT is stateless, logout is handled client-side
+  // But we can still return a success response
+  return res.status(200).json({ 
+    success: true, 
+    message: "successfully" 
+  });
+})
 app.listen(5001, () => console.log("server is running"))
