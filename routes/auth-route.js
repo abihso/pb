@@ -72,7 +72,8 @@ authroute.post("/login", async (req, res) => {
     console.error("Login error:", error)
     return res.status(500).json({ 
       success: false, 
-      message: "An error occurred during login. Please try again." ,
+      message: "An error occurred during login. Please try again.",
+      error: error.message
     })
   }
 })
