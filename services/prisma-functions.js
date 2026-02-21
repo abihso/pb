@@ -1,5 +1,4 @@
-import prisma from "../config/db.js";
-
+import  {prisma}  from "../config/db.js"
 export const createNewMember = async (payloadData) => {
   const newMember = await prisma.user.create({
     data : {

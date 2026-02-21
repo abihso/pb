@@ -1,4 +1,4 @@
-import prisma from "../config/db.js"
+import {prisma} from "../config/db.js"
 import { verify } from "../services/jsonwebtoken.js"
 
 const verifyUser = async (req, res, next) => {

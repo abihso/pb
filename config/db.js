@@ -1,9 +1,26 @@
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: "file:../prisma/presby.db"
-    }
-  }
+
+ const prisma = new PrismaClient({
+  log : ["error","warn","query"]
 });
-export default prisma
+
+ const connectDb = async () => {
+  try {
+    await prisma.$connect()
+    console.log("Connected")
+  } catch (error) {
+    console.error(`Error : ${error.message}`)
+    process.exit(1)
+  }
+}
+
+ const disconnectDb = async () => {
+  await prisma.$disconnect()
+}
+
+
+export {
+  connectDb,disconnectDb,prisma
+}
+
+

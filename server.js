@@ -7,15 +7,14 @@ import { PrismaClient } from '@prisma/client';
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 
-
+import { connectDb,disconnectDb } from "./config/db.js";
 
 const app = express()
-const prisma = new PrismaClient();
 env.config()
 app.use( 
   cors({
-    origin: "*",
-    credentials: true,
+    origin: ["https://g-xi-two.vercel.app/api", "http://localhost:3000","https://pf-iota-one.vercel.app/api"], 
+    credentials: true, 
   })
 );
 app.use(express.json())
@@ -25,15 +24,16 @@ app.use(express.urlencoded({ extended: false }))
 //   windowMs: 15 * 60 * 1000,
 //   max: 200
 // }));
-
+connectDb()
 app.use("/api/admin", adminRoute) 
 app.use("/api/auth", authroute) 
 app.get("/", (req, res) => {
-  // Since JWT is stateless, logout is handled client-side
-  // But we can still return a success response
+
   return res.status(200).json({ 
     success: true, 
     message: "successfully" 
-  });
+  }); 
 })
 app.listen(5001, () => console.log("server is running"))
+
+// disconnectDb()
