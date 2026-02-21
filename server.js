@@ -13,7 +13,7 @@ const app = express()
 env.config()
 app.use( 
   cors({
-    origin: ["https://g-xi-two.vercel.app/api", "http://localhost:3000","https://pf-iota-one.vercel.app/api"], 
+    origin: ["https://g-xi-two.vercel.app/api", "http://localhost:3000","https://pf-iota-one.vercel.app"], 
     credentials: true, 
   })
 );
